@@ -5,6 +5,8 @@
  */
 package p.seminar_dna;
 
+import java.io.IOException;
+
 /**
  *
  * @author user
@@ -157,9 +159,9 @@ public class CodeSonne {
                                 aminoAktuell++;
                                 break;
                                 
-                    //case "AUG": amino[aminoAktuell] = "Methionin";
-                                //aminoAktuell++;
-                                //break;
+                    case "AUG": amino[aminoAktuell] = "Methionin";
+                                aminoAktuell++;
+                                break;
                                 
                     case "ACU": amino[aminoAktuell] = "Threonin";
                                 aminoAktuell++;
@@ -307,8 +309,18 @@ public class CodeSonne {
             System.out.println(amino_kurz[z]);
         }
         
+        Schnittstelle test = new Schnittstelle();
+        try{
+            test.auslese();
+        }
+            catch(IOException e){
+                e.printStackTrace();
+                }
+        }
+        
+        
         
         
     }
     
-}
+
