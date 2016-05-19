@@ -5,7 +5,12 @@
  */
 package p.seminar_dna;
 
+import AlgoTools.IO;
 import java.io.IOException;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter; 
 
 /**
  *
@@ -13,10 +18,11 @@ import java.io.IOException;
  */
 
 
+
 public class CodeSonne {
     
-    
-    
+  static int laenge_exact=0;  
+  static String[] amino_kurz;  
     public void sonne(String[] sort){
         int laenge = sort.length;
         String[] amino = new String[laenge];
@@ -309,16 +315,26 @@ public class CodeSonne {
             System.out.println(amino_kurz[z]);
         }
         
-        Schnittstelle test = new Schnittstelle();
-        try{
-            test.auslese();
-        }
-            catch(IOException e){
-                e.printStackTrace();
-                }
-        }
+        speichern sichern = new speichern();
+        
+        String name; 
+                
+        name = IO.readString("Name: ");
+        
+        sichern.schreiben(laenge_exact , amino_kurz , name);
         
         
+        
+//        Schnittstelle test = new Schnittstelle();
+//        try{
+//            test.auslese();
+//        }
+//            catch(IOException e){
+//                e.printStackTrace();
+//                }
+        }
+        
+
         
         
     }
