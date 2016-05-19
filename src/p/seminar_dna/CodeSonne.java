@@ -315,12 +315,12 @@ public class CodeSonne {
             System.out.println(amino_kurz[z]);
         }
         
-        speichern sichern = new speichern();
+        
         
         String name; 
                 
         name = IO.readString("Name: ");
-        
+        speichern sichern = new speichern();
         sichern.schreiben(laenge_exact , amino_kurz , name);
         
         
