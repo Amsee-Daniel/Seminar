@@ -21,6 +21,7 @@ import java.io.PrintWriter;
 
 public class CodeSonne {
     
+  static GUI gui_sonne;  
   static int laenge_exact=0;  
   static String[] amino_kurz;  
     public void sonne(String[] sort){
@@ -315,13 +316,15 @@ public class CodeSonne {
             System.out.println(amino_kurz[z]);
         }
         
+        gui_sonne.setAminos(amino_kurz);
         
         
-        String name; 
+        
+       // String name; 
                 
-        name = IO.readString("Name: ");
-        speichern sichern = new speichern();
-        sichern.schreiben(laenge_exact , amino_kurz , name);
+       // name = IO.readString("Name: ");
+      //  speichern sichern = new speichern();
+      //  sichern.schreiben(laenge_exact , amino_kurz , name);
         
         
         
@@ -335,7 +338,9 @@ public class CodeSonne {
         }
         
 
-        
+       public void setgui(GUI obj_g){
+           gui_sonne = obj_g;
+       } 
         
     }
     

@@ -7,6 +7,8 @@ package p.seminar_dna;
 
 import AlgoTools.IO;
 import java.io.*;
+import org.newdawn.slick.AppGameContainer;
+import org.newdawn.slick.SlickException;
 
 
 /**
@@ -14,43 +16,26 @@ import java.io.*;
  * @author user
  */
 public class PSeminar_DNA {
+    
+    static GUI gui = new GUI("P-Sem");
+    static read reader = new read();
+    static CodeSonne sonne = new CodeSonne();
+    static Umsetzen umsetzer = new Umsetzen();
 
-    /**
-     * @param args the command line arguments
-     */
+    public static void main (String[] args) throws SlickException{
+        gui.setRead(reader);
+        reader.setgui(gui);
+        sonne.setgui(gui);
+        umsetzer.setSonne(sonne);
+        gui.setUmsetzer(umsetzer);
+        AppGameContainer app = new AppGameContainer(gui);  
+                
+        app.setDisplayMode(800,600,false);
+        
+        app.start();
     
-    public static String DNA;
-    
-    
-    public static void main(String[] args) {
-        
-        int laengeZeichen;
-        
-        DNA = IO.readString("Deine DNA: ");
-        
-        laengeZeichen = DNA.length();
-        
-        DNA=DNA.replaceAll("T", "U");
-        
-        String[] Codon = new String[laengeZeichen/3];
-        
-            for(int i=0;i<laengeZeichen/3;i++){
-                String x;
-                x=DNA.substring(0,3);
-                Codon[i]=DNA.substring(0,3);
-                DNA=DNA.replaceFirst(x, "");
-                System.out.println(Codon[i]);
-            }
-            
-            CodeSonne anwendung = new CodeSonne();
-            
-                anwendung.sonne(Codon);
-            
-            //System.out.println("DNA");
-        
-        
-        
-        
     }
+    
+    
     
 }
