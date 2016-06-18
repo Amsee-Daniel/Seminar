@@ -7,6 +7,7 @@ package p.seminar_dna;
 
 import AlgoTools.IO;
 import java.io.*;
+import javax.swing.JOptionPane;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.SlickException;
 
@@ -21,8 +22,17 @@ public class PSeminar_DNA {
     static read reader = new read();
     static CodeSonne sonne = new CodeSonne();
     static Umsetzen umsetzer = new Umsetzen();
+    static InputSpeicher speichern = new InputSpeicher();
 
     public static void main (String[] args) throws SlickException{
+        
+            String eingabe = JOptionPane.showInputDialog(null,"Geben Sie Ihre DNA ein",
+                                                             "P-Sem",
+                                                             JOptionPane.PLAIN_MESSAGE);
+            speichern.speichern(eingabe);
+            
+               
+            
         gui.setRead(reader);
         reader.setgui(gui);
         sonne.setgui(gui);
