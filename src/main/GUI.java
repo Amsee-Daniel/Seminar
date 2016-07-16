@@ -27,7 +27,13 @@ public class GUI extends BasicGame{
 	    private FontChanger changeFont;
 	    private Umsetzen umsetzer;
 	    private String[] aminos;
+	    private String[] aminos_Mut;
 	    private int aminoposition = 0;
+	    private int laenge_DNA = 0;
+	    private Mutation mutieren = null;
+	    private boolean setzerstmalum = false;
+	    private String DNA_Mutiert = "";
+	    private boolean showMutation = false;
 	    
 	    
 	    public GUI(String title){
@@ -36,6 +42,9 @@ public class GUI extends BasicGame{
 
 	    @Override
 	    public void init(GameContainer container) throws SlickException {
+	    	
+	    	mutieren = new Mutation();
+	    	mutieren.setGUI(this);
 	        auswahl = new Image("img/hauptbild.png");
 	        cursor = new Image("img/Cursor.png");
 	        curser_x = 0;
@@ -67,14 +76,26 @@ public class GUI extends BasicGame{
 	                            }
 	                    
 	                    case 2 : {
-	                                umsetzer.amino(schowDNA);
-	                                    break;
-	                            }
+	                    				aminos = umsetzer.amino(schowDNA);
+	                    				break;
+	                             }
+	                    
+	                    case 3 : {
+	                    			if(aminos[0] != "null"){
+	                    					mutieren.insert(laenge_DNA, schowDNA);
+	                    					aminos_Mut = umsetzer.amino(DNA_Mutiert);
+	                    					showMutation = true;
+	                    						break;
+	                    				}else{
+	                    					setzerstmalum = true;
+	                    						break;
+	                    				}
+	                    			}
 	                }
 	            }
 	            
 	            if(input.isKeyPressed(input.KEY_DOWN)){
-	                if(cursor_position < 3){
+	                if(cursor_position < 4){
 	                    cursor_y = cursor_y + 100;
 	                    cursor_position = cursor_position +1;
 	                }
@@ -117,6 +138,20 @@ public class GUI extends BasicGame{
 	            font2.drawString(300, 70, aminos[aminoposition], Color.black);
 	        }
 	        
+	        if(setzerstmalum){
+	        	font2.drawString(300, 400, "DNA muss zuerst umgesetzt werden!", Color.black);
+	        	try {
+					Thread.sleep(999);
+				} catch (InterruptedException e) {
+					System.out.println("Ging wohl nicht");
+				}
+	        	setzerstmalum = false;
+	        }
+	        
+	        if(showMutation){
+	        	font2.drawString(300, 130, DNA_Mutiert, Color.black);
+	        }
+	        
 	        
 	    }
 	    
@@ -135,5 +170,13 @@ public class GUI extends BasicGame{
 	    public void setAminos(String[] obj_s){
 	        aminos = new String[obj_s.length];
 	        aminos = obj_s;
+	    }
+	    
+	    public void setLaenge_DNA(int laeng_Obj){
+	    	laenge_DNA = laeng_Obj;
+	    }
+	    
+	    public void setDNA_Mutiert(String DNA_Obj){
+	    		DNA_Mutiert = DNA_Obj;
 	    }
 }

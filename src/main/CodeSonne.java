@@ -11,8 +11,12 @@ public class CodeSonne {
 	static GUI gui_sonne;  
 	  static int laenge_exact=0;  
 	  static String[] amino_kurz;  
-	    public void sonne(String[] sort){
+	  
+	    public String[] sonne(String[] sort){
+	    	
 	        int laenge = sort.length;
+	        gui_sonne.setLaenge_DNA(laenge);
+	        
 	        String[] amino = new String[laenge];
 	        int aminoAktuell=0;
 	        for(int i=0;i<sort.length;i++){
@@ -303,7 +307,7 @@ public class CodeSonne {
 	            System.out.println(amino_kurz[z]);
 	        }
 	        
-	        gui_sonne.setAminos(amino_kurz);
+	        return amino_kurz;
 	        
 	        
 	        
