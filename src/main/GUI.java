@@ -30,6 +30,7 @@ public class GUI extends BasicGame{
 	    private String[] aminos_Mut;
 	    private int aminoposition = 0;
 	    private int laenge_DNA = 0;
+	    private int laenge_DNA_Zeichen = 0;
 	    private Mutation mutieren = null;
 	    private boolean setzerstmalum = false;
 	    private String DNA_Mutiert = "";
@@ -54,6 +55,8 @@ public class GUI extends BasicGame{
 	        font2 = changeFont.ChangeFont();
 	        aminos = new String[1];
 	        aminos[0] = "null";
+	        aminos_Mut = new String[1];
+	        aminos_Mut[0] = "null";
 	        
 	        
 	        
@@ -76,14 +79,15 @@ public class GUI extends BasicGame{
 	                            }
 	                    
 	                    case 2 : {
-	                    				aminos = umsetzer.amino(schowDNA);
+	                    				aminos = umsetzer.amino(schowDNA, true);
 	                    				break;
 	                             }
 	                    
 	                    case 3 : {
 	                    			if(aminos[0] != "null"){
-	                    					mutieren.insert(laenge_DNA, schowDNA);
-	                    					aminos_Mut = umsetzer.amino(DNA_Mutiert);
+	                    					mutieren.insert(laenge_DNA_Zeichen, schowDNA);
+	                    					aminos_Mut = umsetzer.amino(DNA_Mutiert, false);
+	                    					//System.out.println("Mut_1" + aminos_Mut[1]);
 	                    					showMutation = true;
 	                    						break;
 	                    				}else{
@@ -150,6 +154,11 @@ public class GUI extends BasicGame{
 	        
 	        if(showMutation){
 	        	font2.drawString(300, 130, DNA_Mutiert, Color.black);
+	        	try{
+		            font2.drawString(300, 180, aminos_Mut[aminoposition], Color.black);
+	        	}catch(ArrayIndexOutOfBoundsException ex){
+	        		font2.drawString(300, 180, "ERROR", Color.black);
+		        }
 	        }
 	        
 	        
@@ -176,7 +185,13 @@ public class GUI extends BasicGame{
 	    	laenge_DNA = laeng_Obj;
 	    }
 	    
+	    public void setLaenge_DNA_Zeichen(int laenge_Obj){
+	    	laenge_DNA_Zeichen = laenge_Obj;
+	    }
+	    
 	    public void setDNA_Mutiert(String DNA_Obj){
 	    		DNA_Mutiert = DNA_Obj;
+	    		aminos_Mut = new String[DNA_Mutiert.length()];
+	    		System.out.println("Länge: " + aminos_Mut.length);
 	    }
 }

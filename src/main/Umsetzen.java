@@ -4,7 +4,7 @@ public class Umsetzen {
 
 	private CodeSonne sonne;
     
-    public String[] amino(String DNA_get){
+    public String[] amino(String DNA_get, boolean mut_nonMut){
     
         int laengeZeichen;
         String DNA = DNA_get;
@@ -24,7 +24,7 @@ public class Umsetzen {
             
             
             
-                return sonne.sonne(Codon);
+                return sonne.sonne(Codon, mut_nonMut,laengeZeichen);
             
             //System.out.println("DNA");
     

@@ -12,11 +12,16 @@ public class CodeSonne {
 	  static int laenge_exact=0;  
 	  static String[] amino_kurz;  
 	  
-	    public String[] sonne(String[] sort){
+	    public String[] sonne(String[] sort, boolean mut_nonMut, int Zeichen){
 	    	
 	        int laenge = sort.length;
-	        gui_sonne.setLaenge_DNA(laenge);
 	        
+	        if(mut_nonMut){
+	        	gui_sonne.setLaenge_DNA(laenge);
+	        	gui_sonne.setLaenge_DNA_Zeichen(Zeichen);
+	        }else{
+	        	gui_sonne.setLaenge_DNA_Zeichen(Zeichen);
+	        }
 	        String[] amino = new String[laenge];
 	        int aminoAktuell=0;
 	        for(int i=0;i<sort.length;i++){

@@ -6,8 +6,14 @@ public class Mutation {
 	private GUI gui_Mut;
 	
 	public void insert(int laenge, String DNA){
+		System.out.println(laenge);
+
+			int random_Stelle = ((int)(Math.random()*laenge));
+				if(random_Stelle < 4){
+					random_Stelle = random_Stelle + (4-random_Stelle);
+				}
+			System.out.println(random_Stelle);
 		
-		int random_Stelle = ((int)(Math.random()*laenge));
 		int random_base = ((int)(Math.random()*4));
 		
 		DNA_Mutiert = DNA.substring(0, random_Stelle);
@@ -27,7 +33,9 @@ public class Mutation {
 										break;
 		
 		}
-		
+	
+	System.out.println(DNA_Mutiert);
+	gui_Mut.setDNA_Mutiert(DNA_Mutiert);	
 		
 		
 	}
