@@ -1,0 +1,6 @@
+Eingabe Material:
+AUGGATTACA
+3
+Methionin
+Asparagins�ure
+Tyrosin

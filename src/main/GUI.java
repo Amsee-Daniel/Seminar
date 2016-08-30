@@ -35,6 +35,10 @@ public class GUI extends BasicGame{
 	    private boolean setzerstmalum = false;
 	    private String DNA_Mutiert = "";
 	    private boolean showMutation = false;
+	    private String[] codons_DNA = null;
+	    private String[] codons_DNA_Mut = null;
+	    private int laengeCodonArray = 0;
+	    private Speichern Save = new Speichern();
 	    
 	    
 	    public GUI(String title){
@@ -80,6 +84,8 @@ public class GUI extends BasicGame{
 	                    
 	                    case 2 : {
 	                    				aminos = umsetzer.amino(schowDNA, true);
+	                    				codons_DNA = umsetzer.getCodons();
+	                    				laengeCodonArray = aminos.length;
 	                    				break;
 	                             }
 	                    
@@ -89,11 +95,20 @@ public class GUI extends BasicGame{
 	                    					aminos_Mut = umsetzer.amino(DNA_Mutiert, false);
 	                    					//System.out.println("Mut_1" + aminos_Mut[1]);
 	                    					showMutation = true;
+	                    					codons_DNA_Mut = umsetzer.getCodons();
+	                    						if((codons_DNA_Mut.length) < (codons_DNA.length)){
+	                    							laengeCodonArray = codons_DNA.length;
+	                    						}else{
+	                    							laengeCodonArray = codons_DNA_Mut.length;
+	                    						}
 	                    						break;
 	                    				}else{
 	                    					setzerstmalum = true;
 	                    						break;
 	                    				}
+	                    			}
+	                    case 4 : {
+	                    			Save.schreiben(codons_DNA.length,schowDNA , aminos, codons_DNA_Mut.length, DNA_Mutiert, aminos_Mut);	                    	
 	                    			}
 	                }
 	            }
@@ -117,7 +132,7 @@ public class GUI extends BasicGame{
 	            }
 	            
 	            if(input.isKeyPressed(input.KEY_RIGHT)){
-	                if(aminoposition < aminos.length-1){
+	                if(aminoposition < laengeCodonArray-1){
 	                    aminoposition = aminoposition + 1;
 	                }
 	            }
@@ -136,10 +151,29 @@ public class GUI extends BasicGame{
 	        
 	        auswahl.draw(0,0);
 	        cursor.draw(curser_x, cursor_y);
-	        font2.drawString(300, 20,schowDNA,Color.black);
+	        if(codons_DNA != null){
+	        	try{
+	        		font2.drawString(400, 20,codons_DNA[aminoposition],Color.black);
+	        	}catch(ArrayIndexOutOfBoundsException ex){
+	        	}
+	        	try{
+	        		font2.drawString(500, 20,codons_DNA[aminoposition +1],Color.black);
+	        	}catch(ArrayIndexOutOfBoundsException ex){
+	        		font2.drawString(500, 20,"",Color.black);
+	        	}
+	        	try{
+	        		font2.drawString(300, 20,codons_DNA[aminoposition -1],Color.black);
+	        	}catch(ArrayIndexOutOfBoundsException ex){
+	        		font2.drawString(300, 20,"",Color.black);
+	        	}
+	        }
 	        //g.drawString(schowDNA, 300, 20);
 	        if(aminos.length > 1){
-	            font2.drawString(300, 70, aminos[aminoposition], Color.black);
+	            try{
+	            	font2.drawString(300, 70, aminos[aminoposition], Color.black);
+	            }catch(ArrayIndexOutOfBoundsException ex){
+	            	font2.drawString(300, 70, "", Color.red);
+	            }
 	        }
 	        
 	        if(setzerstmalum){
@@ -153,7 +187,23 @@ public class GUI extends BasicGame{
 	        }
 	        
 	        if(showMutation){
-	        	font2.drawString(300, 130, DNA_Mutiert, Color.black);
+	        	//font2.drawString(300, 130, DNA_Mutiert, Color.black);
+	        	if(codons_DNA_Mut != null){
+		        	try{
+		        		font2.drawString(400, 130,codons_DNA_Mut[aminoposition],Color.black);
+		        	}catch(ArrayIndexOutOfBoundsException ex){
+		        	}
+		        	try{
+		        		font2.drawString(500, 130,codons_DNA_Mut[aminoposition +1],Color.black);
+		        	}catch(ArrayIndexOutOfBoundsException ex){
+		        		font2.drawString(500, 130,"",Color.black);
+		        	}
+		        	try{
+		        		font2.drawString(300, 130,codons_DNA_Mut[aminoposition -1],Color.black);
+		        	}catch(ArrayIndexOutOfBoundsException ex){
+		        		font2.drawString(300, 130,"",Color.black);
+		        	}
+		        }
 	        	try{
 		            font2.drawString(300, 180, aminos_Mut[aminoposition], Color.black);
 	        	}catch(ArrayIndexOutOfBoundsException ex){
@@ -192,6 +242,6 @@ public class GUI extends BasicGame{
 	    public void setDNA_Mutiert(String DNA_Obj){
 	    		DNA_Mutiert = DNA_Obj;
 	    		aminos_Mut = new String[DNA_Mutiert.length()];
-	    		System.out.println("Länge: " + aminos_Mut.length);
+	    		System.out.println("Lï¿½nge: " + aminos_Mut.length);
 	    }
 }

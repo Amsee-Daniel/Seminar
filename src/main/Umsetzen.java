@@ -3,6 +3,7 @@ package main;
 public class Umsetzen {
 
 	private CodeSonne sonne;
+	String[] Codon = null;
     
     public String[] amino(String DNA_get, boolean mut_nonMut){
     
@@ -12,7 +13,7 @@ public class Umsetzen {
         
         DNA=DNA.replaceAll("T", "U");
         
-        String[] Codon = new String[laengeZeichen/3];
+        Codon = new String[laengeZeichen/3];
         
             for(int i=0;i<laengeZeichen/3;i++){
                 String x;
@@ -32,5 +33,9 @@ public class Umsetzen {
     
     public void setSonne(CodeSonne obj_s){
         sonne = obj_s;
+    }
+    
+    public String[] getCodons(){
+    	return Codon;
     }
 }

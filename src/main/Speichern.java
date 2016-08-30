@@ -5,17 +5,33 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.swing.JOptionPane;
+
 public class Speichern {
 	
-	public void schreiben(int laenge_exact , String[] amino_kurz , String name) {
+	public void schreiben(int laengeDNA, String DNA, String[] amino_DNA, int laengeDNA_Mut, String DNA_Mut, String[] amino_DNA_Mut) {
         
+        String name = JOptionPane.showInputDialog(null,"ateiname",
+                "P-Sem",
+                JOptionPane.PLAIN_MESSAGE);
+		
         PrintWriter pWriter = null;
     try {
-        pWriter = new PrintWriter(new BufferedWriter(new FileWriter(name + ".txt")));
-        pWriter.println(laenge_exact);
-        for(int n=0;n<laenge_exact;n++){
-        pWriter.println(amino_kurz[n]);
+        pWriter = new PrintWriter(new BufferedWriter(new FileWriter("DNA_Gesichert//" + name + ".txt")));
+        pWriter.println("Eingabe Material:");
+        pWriter.println(DNA);
+        pWriter.println(laengeDNA);
+        for(int n=0;n<laengeDNA;n++){
+        pWriter.println(amino_DNA[n]);
         }
+        pWriter.println("------------------------------------------");
+        pWriter.println("Mutation:");
+        pWriter.println(DNA_Mut);
+        pWriter.println(laengeDNA_Mut);
+        for(int n=0;n<laengeDNA_Mut;n++){
+        pWriter.println(amino_DNA_Mut[n]);
+        }
+        
     } catch (IOException ioe) {
         ioe.printStackTrace();
     } finally {

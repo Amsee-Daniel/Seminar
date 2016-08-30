@@ -14,8 +14,11 @@ public class PSeminar_DNA {
     static CodeSonne sonne = new CodeSonne();
     static Umsetzen umsetzer = new Umsetzen();
     static InputSpeicher speichern = new InputSpeicher();
+    static File save = new File("DNA_Gesichert");
 
     public static void main (String[] args) throws SlickException{
+    	
+    	save.mkdir();
         
             String eingabe = JOptionPane.showInputDialog(null,"Geben Sie Ihre DNA ein",
                                                              "P-Sem",
