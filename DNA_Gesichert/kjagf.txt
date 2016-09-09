@@ -1,0 +1,12 @@
+Eingabe Material:
+AUGGATTACA
+3
+Methionin
+Asparaginsäure
+Tyrosin
+------------------------------------------
+Mutation:
+AUGGATTAAACCACA
+3
+Methionin
+Asparaginsäure

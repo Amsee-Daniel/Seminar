@@ -22,14 +22,16 @@ public class Speichern {
         pWriter.println(DNA);
         pWriter.println(laengeDNA);
         for(int n=0;n<laengeDNA;n++){
-        pWriter.println(amino_DNA[n]);
+        	pWriter.println(amino_DNA[n]);
         }
         pWriter.println("------------------------------------------");
         pWriter.println("Mutation:");
         pWriter.println(DNA_Mut);
         pWriter.println(laengeDNA_Mut);
         for(int n=0;n<laengeDNA_Mut;n++){
-        	pWriter.println(amino_DNA_Mut[n]);
+        	try{
+        		pWriter.println(amino_DNA_Mut[n]);
+        	}catch(Exception ex){}
         }
         
     } catch (IOException ioe) {
