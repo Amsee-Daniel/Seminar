@@ -25,7 +25,7 @@ public class Mutation {
 			DNA_Mutiert = DNA.substring(0, DNA.length());
 		}
 		
-		String mutationsParameter = JOptionPane.showInputDialog(null,"Wie viele Codons sollen eingefügt werden",
+		String mutationsParameter = JOptionPane.showInputDialog(null,"Wie viele Codons sollen eingefügt werden?",
                 "P-Sem",
                 JOptionPane.PLAIN_MESSAGE);
 		
@@ -52,11 +52,41 @@ public class Mutation {
 			}
 		}
 	
-	DNA_Mutiert = DNA_Mutiert +  DNA.substring(random_Stelle + 1 , DNA.length());
+	try{
+		DNA_Mutiert = DNA_Mutiert +  DNA.substring(random_Stelle + 1 , DNA.length());
+	}catch(StringIndexOutOfBoundsException ex){
+		
+	}
 		
 	System.out.println(DNA_Mutiert);
 	gui_Mut.setDNA_Mutiert(DNA_Mutiert);	
 		
+		
+	}
+	
+	public void delet(int laenge, String DNA){
+		String mutationsParameter = JOptionPane.showInputDialog(null,"Wie viele Codons sollen gelöscht werden?",
+                "P-Sem",
+                JOptionPane.PLAIN_MESSAGE);
+		
+		int anzahl = Integer.parseInt(mutationsParameter);
+		
+		int random_Stelle = ((int)(Math.random()*laenge));
+		System.out.println("Random, inti: " + random_Stelle);
+			if(random_Stelle < 4){
+				random_Stelle = random_Stelle + (4-random_Stelle);
+			}if((random_Stelle + anzahl) > DNA.length()){
+				random_Stelle = random_Stelle - (random_Stelle - DNA.length());
+			}
+		
+		try{
+			DNA_Mutiert = DNA.substring(0, random_Stelle +1) + DNA.substring(random_Stelle + 1 + anzahl, DNA.length());
+		}catch(StringIndexOutOfBoundsException ex){
+			DNA_Mutiert = "ERROR";
+		}
+		
+		System.out.println(DNA_Mutiert);
+		gui_Mut.setDNA_Mutiert(DNA_Mutiert);
 		
 	}
 	

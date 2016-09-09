@@ -3,6 +3,9 @@ package main;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.swing.JOptionPane;
+
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -39,6 +42,7 @@ public class GUI extends BasicGame{
 	    private String[] codons_DNA_Mut = null;
 	    private int laengeCodonArray = 0;
 	    private Speichern Save = new Speichern();
+	    private boolean ausgelesen = false;
 	    
 	    
 	    public GUI(String title){
@@ -76,6 +80,7 @@ public class GUI extends BasicGame{
 	                    case 1 : {
 	                                try {
 	                                  eingabe.auslesen(inputTXT);
+	                                  ausgelesen = true;
 	                                } catch (IOException ex) {
 	                                    Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
 	                                }
@@ -91,7 +96,17 @@ public class GUI extends BasicGame{
 	                    
 	                    case 3 : {
 	                    			if(aminos[0] != "null"){
-	                    					mutieren.insert(laenge_DNA_Zeichen, schowDNA);
+	                    				int startKodon = JOptionPane.showConfirmDialog(null,"Insertion = JA, Deletion = Nein", 
+												"Mutation", 
+												 JOptionPane.YES_NO_OPTION);
+    
+	                    						if(startKodon == JOptionPane.YES_OPTION){
+	                    							mutieren.insert(laenge_DNA_Zeichen, schowDNA);
+	                    						}else{                   
+	                    							mutieren.delet(laenge_DNA_Zeichen, schowDNA);
+	                    						}
+	                    					
+	                    					//mutieren.insert(laenge_DNA_Zeichen, schowDNA);
 	                    					aminos_Mut = umsetzer.amino(DNA_Mutiert, false);
 	                    					//System.out.println("Mut_1" + aminos_Mut[1]);
 	                    					showMutation = true;
@@ -148,8 +163,14 @@ public class GUI extends BasicGame{
 
 	    @Override
 	    public void render(GameContainer container, Graphics g) throws SlickException {
+	    	
+	    	auswahl.draw(0,0);
+	    	
+	    	if(ausgelesen){
+	    		font2.drawString(100, 500, schowDNA, Color.black);
+	    	}
+	    	
 	        
-	        auswahl.draw(0,0);
 	        cursor.draw(curser_x, cursor_y);
 	        if(codons_DNA != null){
 	        	try{

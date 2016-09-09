@@ -29,7 +29,7 @@ public class Speichern {
         pWriter.println(DNA_Mut);
         pWriter.println(laengeDNA_Mut);
         for(int n=0;n<laengeDNA_Mut;n++){
-        pWriter.println(amino_DNA_Mut[n]);
+        	pWriter.println(amino_DNA_Mut[n]);
         }
         
     } catch (IOException ioe) {
