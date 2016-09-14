@@ -123,7 +123,7 @@ public class GUI extends BasicGame{
 	                    				}
 	                    			}
 	                    case 4 : {
-	                    			Save.schreiben(codons_DNA.length,schowDNA , aminos, aminos.length, DNA_Mutiert, aminos_Mut);	                    	
+	                    			Save.schreiben(codons_DNA.length,schowDNA , aminos, aminos_Mut.length, DNA_Mutiert, aminos_Mut);	                    	
 	                    			}
 	                }
 	            }
