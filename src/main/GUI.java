@@ -43,6 +43,7 @@ public class GUI extends BasicGame{
 	    private int laengeCodonArray = 0;
 	    private Speichern Save = new Speichern();
 	    private boolean ausgelesen = false;
+	    private MutationManuell manuell = new MutationManuell(); 
 	    
 	    
 	    public GUI(String title){
@@ -52,6 +53,7 @@ public class GUI extends BasicGame{
 	    @Override
 	    public void init(GameContainer container) throws SlickException {
 	    	
+	    	manuell.setGUI(this);
 	    	mutieren = new Mutation();
 	    	mutieren.setGUI(this);
 	        auswahl = new Image("img/hauptbild.png");
@@ -96,6 +98,22 @@ public class GUI extends BasicGame{
 	                    
 	                    case 3 : {
 	                    			if(aminos[0] != "null"){
+	                    				
+	                    				int eigen = JOptionPane.showConfirmDialog(null,"Manuelle Mutation?", 
+												"Mutation", 
+												 JOptionPane.YES_NO_OPTION);
+	                    						
+	                    				if(eigen == JOptionPane.YES_OPTION){
+                							try {
+												manuell.mutierenManu();
+											} catch (Exception e) {
+												// TODO Auto-generated catch block
+												e.printStackTrace();
+											}
+                						}else{                   
+                							
+                						
+	                    				
 	                    				int startKodon = JOptionPane.showConfirmDialog(null,"Insertion = JA, Deletion = Nein", 
 												"Mutation", 
 												 JOptionPane.YES_NO_OPTION);
@@ -105,7 +123,7 @@ public class GUI extends BasicGame{
 	                    						}else{                   
 	                    							mutieren.delet(laenge_DNA_Zeichen, schowDNA);
 	                    						}
-	                    					
+                						}
 	                    					//mutieren.insert(laenge_DNA_Zeichen, schowDNA);
 	                    					aminos_Mut = umsetzer.amino(DNA_Mutiert, false);
 	                    					//System.out.println("Mut_1" + aminos_Mut[1]);
@@ -174,16 +192,26 @@ public class GUI extends BasicGame{
 	        cursor.draw(curser_x, cursor_y);
 	        if(codons_DNA != null){
 	        	try{
-	        		font2.drawString(400, 20,codons_DNA[aminoposition],Color.black);
+	        		font2.drawString(500, 20,codons_DNA[aminoposition],Color.black);
 	        	}catch(ArrayIndexOutOfBoundsException ex){
 	        	}
 	        	try{
-	        		font2.drawString(500, 20,codons_DNA[aminoposition +1],Color.black);
+	        		font2.drawString(600, 20,codons_DNA[aminoposition +1],Color.black);
 	        	}catch(ArrayIndexOutOfBoundsException ex){
-	        		font2.drawString(500, 20,"",Color.black);
+	        		font2.drawString(600, 20,"",Color.black);
 	        	}
 	        	try{
-	        		font2.drawString(300, 20,codons_DNA[aminoposition -1],Color.black);
+	        		font2.drawString(700, 20,codons_DNA[aminoposition +2],Color.black);
+	        	}catch(ArrayIndexOutOfBoundsException ex){
+	        		font2.drawString(700, 20,"",Color.black);
+	        	}
+	        	try{
+	        		font2.drawString(400, 20,codons_DNA[aminoposition -1],Color.black);
+	        	}catch(ArrayIndexOutOfBoundsException ex){
+	        		font2.drawString(400, 20,"",Color.black);
+	        	}
+	        	try{
+	        		font2.drawString(300, 20,codons_DNA[aminoposition -2],Color.black);
 	        	}catch(ArrayIndexOutOfBoundsException ex){
 	        		font2.drawString(300, 20,"",Color.black);
 	        	}
@@ -211,16 +239,26 @@ public class GUI extends BasicGame{
 	        	//font2.drawString(300, 130, DNA_Mutiert, Color.black);
 	        	if(codons_DNA_Mut != null){
 		        	try{
-		        		font2.drawString(400, 130,codons_DNA_Mut[aminoposition],Color.black);
+		        		font2.drawString(500, 130,codons_DNA_Mut[aminoposition],Color.black);
 		        	}catch(ArrayIndexOutOfBoundsException ex){
 		        	}
 		        	try{
-		        		font2.drawString(500, 130,codons_DNA_Mut[aminoposition +1],Color.black);
+		        		font2.drawString(600, 130,codons_DNA_Mut[aminoposition +1],Color.black);
 		        	}catch(ArrayIndexOutOfBoundsException ex){
-		        		font2.drawString(500, 130,"",Color.black);
+		        		font2.drawString(600, 130,"",Color.black);
 		        	}
 		        	try{
-		        		font2.drawString(300, 130,codons_DNA_Mut[aminoposition -1],Color.black);
+		        		font2.drawString(700, 130,codons_DNA_Mut[aminoposition +2],Color.black);
+		        	}catch(ArrayIndexOutOfBoundsException ex){
+		        		font2.drawString(700, 130,"",Color.black);
+		        	}
+		        	try{
+		        		font2.drawString(400, 130,codons_DNA_Mut[aminoposition -1],Color.black);
+		        	}catch(ArrayIndexOutOfBoundsException ex){
+		        		font2.drawString(400, 130,"",Color.black);
+		        	}
+		        	try{
+		        		font2.drawString(300, 130,codons_DNA_Mut[aminoposition -2],Color.black);
 		        	}catch(ArrayIndexOutOfBoundsException ex){
 		        		font2.drawString(300, 130,"",Color.black);
 		        	}
