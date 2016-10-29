@@ -32,7 +32,7 @@ private String input;
         		 input = input.toUpperCase();
         		System.out.println(input);
         	
-        		if(input.contains("B")||input.contains("D")||input.contains("E")||input.contains("F")||input.contains("H")||input.contains("I")||input.contains("J")||input.contains("K")||input.contains("L")||input.contains("M")||input.contains("N")||input.contains("O")||input.contains("P")||input.contains("Q")||input.contains("R")||input.contains("S")||input.contains("U")||input.contains("V")||input.contains("W")||input.contains("X")||input.contains("Y")||input.contains("Z")){
+        		if(input.contains("B")||input.contains("D")||input.contains("E")||input.contains("F")||input.contains("H")||input.contains("I")||input.contains("J")||input.contains("K")||input.contains("L")||input.contains("M")||input.contains("N")||input.contains("O")||input.contains("P")||input.contains("Q")||input.contains("R")||input.contains("S")||input.contains("V")||input.contains("W")||input.contains("X")||input.contains("Y")||input.contains("Z")){
                 	//fertig = false;
         			System.out.println("Error");
                 }
