@@ -29,6 +29,10 @@ public class Mutation {
                 "P-Sem",
                 JOptionPane.PLAIN_MESSAGE);
 		
+		if(mutationsParameter == null){
+			mutationsParameter = "1";
+		}
+		
 		int anzahl = Integer.parseInt(mutationsParameter);
 		
 		for(int i = 0; i<=anzahl; i++){
@@ -68,6 +72,10 @@ public class Mutation {
 		String mutationsParameter = JOptionPane.showInputDialog(null,"Wie viele Codons sollen gelöscht werden?",
                 "P-Sem",
                 JOptionPane.PLAIN_MESSAGE);
+		
+		if(mutationsParameter == null){
+			mutationsParameter = "1";
+		}
 		
 		int anzahl = Integer.parseInt(mutationsParameter);
 		

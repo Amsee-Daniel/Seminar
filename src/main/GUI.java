@@ -5,6 +5,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.Color;
@@ -99,6 +100,8 @@ public class GUI extends BasicGame{
 	                    case 3 : {
 	                    			if(aminos[0] != "null"){
 	                    				
+	                    				
+	                    				
 	                    				int eigen = JOptionPane.showConfirmDialog(null,"Manuelle Mutation?", 
 												"Mutation", 
 												 JOptionPane.YES_NO_OPTION);
@@ -112,11 +115,18 @@ public class GUI extends BasicGame{
 											}
                 						}else{                   
                 							
-                						
+                							Object[] options = {"Insertion",
+                				                    "Deletion"};
 	                    				
-	                    				int startKodon = JOptionPane.showConfirmDialog(null,"Insertion = JA, Deletion = Nein", 
-												"Mutation", 
-												 JOptionPane.YES_NO_OPTION);
+	                    				int startKodon = JOptionPane.showOptionDialog(null,
+	                    					    "Insertion oder Deletion?",
+	                    					    "Mutation",
+	                    					    JOptionPane.YES_NO_OPTION,
+	                    					    JOptionPane.QUESTION_MESSAGE,
+	                    					    null,
+	                    					    options,
+	                    					    options[1]
+	                    					    );
     
 	                    						if(startKodon == JOptionPane.YES_OPTION){
 	                    							mutieren.insert(laenge_DNA_Zeichen, schowDNA);
@@ -206,6 +216,11 @@ public class GUI extends BasicGame{
 	        		font2.drawString(700, 20,"",Color.black);
 	        	}
 	        	try{
+	        		font2.drawString(800, 20,codons_DNA[aminoposition +3],Color.black);
+	        	}catch(ArrayIndexOutOfBoundsException ex){
+	        		font2.drawString(800, 20,"",Color.black);
+	        	}
+	        	try{
 	        		font2.drawString(400, 20,codons_DNA[aminoposition -1],Color.black);
 	        	}catch(ArrayIndexOutOfBoundsException ex){
 	        		font2.drawString(400, 20,"",Color.black);
@@ -253,6 +268,11 @@ public class GUI extends BasicGame{
 		        		font2.drawString(700, 130,"",Color.black);
 		        	}
 		        	try{
+		        		font2.drawString(800, 130,codons_DNA_Mut[aminoposition +3],Color.black);
+		        	}catch(ArrayIndexOutOfBoundsException ex){
+		        		font2.drawString(800, 130,"",Color.black);
+		        	}
+		        	try{
 		        		font2.drawString(400, 130,codons_DNA_Mut[aminoposition -1],Color.black);
 		        	}catch(ArrayIndexOutOfBoundsException ex){
 		        		font2.drawString(400, 130,"",Color.black);
@@ -266,7 +286,7 @@ public class GUI extends BasicGame{
 	        	try{
 		            font2.drawString(300, 180, aminos_Mut[aminoposition], Color.black);
 	        	}catch(ArrayIndexOutOfBoundsException ex){
-	        		font2.drawString(300, 180, "ERROR", Color.black);
+	        		font2.drawString(300, 180, "", Color.black);
 		        }
 	        }
 	        

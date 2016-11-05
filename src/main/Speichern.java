@@ -11,7 +11,7 @@ public class Speichern {
 	
 	public void schreiben(int laengeDNA, String DNA, String[] amino_DNA, int laengeDNA_Mut, String DNA_Mut, String[] amino_DNA_Mut) {
         
-        String name = JOptionPane.showInputDialog(null,"ateiname",
+        String name = JOptionPane.showInputDialog(null,"Dateiname",
                 "P-Sem",
                 JOptionPane.PLAIN_MESSAGE);
 		
