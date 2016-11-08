@@ -16,6 +16,7 @@ public class CodeSonne {
 	    	
 	        int laenge = sort.length;
 	        
+	        //Abfrage, ob die DNA eine Mutierte ist, oder nicht.
 	        if(mut_nonMut){
 	        	gui_sonne.setLaenge_DNA(laenge);
 	        	gui_sonne.setLaenge_DNA_Zeichen(Zeichen);
@@ -28,7 +29,7 @@ public class CodeSonne {
 	        
 	            if(amino[0]==null){
 	                switch(sort[i]){
-	                    
+	                    //Beginn der Übersetzung erst ab einem Star-Codon
 	                    case "AUG": amino[0] = "Methionin";
 	                                aminoAktuell++;
 	                                break;
@@ -38,7 +39,7 @@ public class CodeSonne {
 	                
 	                }
 	            }else{
-	            
+	            //Übersetzung ab Start-Codon bis zu eventuelem Stop-Codon
 	                switch(sort[i]){
 	                    
 	                    case "UUU": amino[aminoAktuell] = "Phenylalanin";
@@ -287,7 +288,7 @@ public class CodeSonne {
 	        }
 	        
 	        int laenge_exact=0;
-	        
+	        //Herausfinden der neuen Amino-Array-Lenge
 	        for(int i=0;i<amino.length;i++){
 	            
 	            if(amino[i]!=null){
@@ -303,7 +304,7 @@ public class CodeSonne {
 	            System.out.println(amino_kurz.length);
 	        
 	        for(int z=0;z<amino_kurz.length;z++){
-	        
+	        //Schreiben der Aminos in ein neues verkürztes Array
 	            amino_kurz[z]=amino[z];
 	        
 	        }

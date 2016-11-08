@@ -17,13 +17,13 @@ private String input;
 	
 	public void mutierenManu() throws Exception{
 		
-		
+		//einlesen der Ausgangs DNA
 		FileReader fr = new FileReader("input.txt");
         BufferedReader br = new BufferedReader(fr);
         preDef = br.readLine();
         br.close();
 		
-        do{
+        do{//Anzeige der DNA zur Mutation
         	fertig = true;
         		input = (String)JOptionPane.showInputDialog(null, "Bitte Mutiere deine DNA",
         			"Mutation", JOptionPane.QUESTION_MESSAGE,null,null,preDef);
@@ -31,7 +31,7 @@ private String input;
         		System.out.println(input);
         		 input = input.toUpperCase();
         		System.out.println(input);
-        	
+        	//Ist die DNA legitim?
         		if(input.contains("B")||input.contains("D")||input.contains("E")||input.contains("F")||input.contains("H")||input.contains("I")||input.contains("J")||input.contains("K")||input.contains("L")||input.contains("M")||input.contains("N")||input.contains("O")||input.contains("P")||input.contains("Q")||input.contains("R")||input.contains("S")||input.contains("V")||input.contains("W")||input.contains("X")||input.contains("Y")||input.contains("Z")){
                 	//fertig = false;
         			System.out.println("Error");

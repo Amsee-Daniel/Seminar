@@ -53,7 +53,8 @@ public class GUI extends BasicGame{
 
 	    @Override
 	    public void init(GameContainer container) throws SlickException {
-	    	
+	    	//Initalisierung der Variablen
+	    	container.setShowFPS(false); 
 	    	manuell.setGUI(this);
 	    	mutieren = new Mutation();
 	    	mutieren.setGUI(this);
@@ -77,10 +78,10 @@ public class GUI extends BasicGame{
 	    public void update(GameContainer container, int delta) throws SlickException {
 	        
 	        Input input = container.getInput();
-	        
+	        //Abfrage der Cursor position, und auswahl der Aktion
 	            if(input.isKeyPressed(input.KEY_ENTER)){
 	                switch(cursor_position){
-	                    case 1 : {
+	                    case 1 : {//Auslesen; Auslesen der anfangs erstellten Text datei
 	                                try {
 	                                  eingabe.auslesen(inputTXT);
 	                                  ausgelesen = true;
@@ -90,18 +91,18 @@ public class GUI extends BasicGame{
 	                                break;
 	                            }
 	                    
-	                    case 2 : {
+	                    case 2 : {//Umsetzen der DNA in Aminosäuren
 	                    				aminos = umsetzer.amino(schowDNA, true);
 	                    				codons_DNA = umsetzer.getCodons();
 	                    				laengeCodonArray = aminos.length;
 	                    				break;
 	                             }
 	                    
-	                    case 3 : {
+	                    case 3 : {//Mutation der DNA
 	                    			if(aminos[0] != "null"){
 	                    				
 	                    				
-	                    				
+	                    				//Abfrage nach Manueller Mutation
 	                    				int eigen = JOptionPane.showConfirmDialog(null,"Manuelle Mutation?", 
 												"Mutation", 
 												 JOptionPane.YES_NO_OPTION);
@@ -113,7 +114,7 @@ public class GUI extends BasicGame{
 												// TODO Auto-generated catch block
 												e.printStackTrace();
 											}
-                						}else{                   
+                						}else{    //Abfrage nach Insertion/Deletion               
                 							
                 							Object[] options = {"Insertion",
                 				                    "Deletion"};
@@ -134,6 +135,7 @@ public class GUI extends BasicGame{
 	                    							mutieren.delet(laenge_DNA_Zeichen, schowDNA);
 	                    						}
                 						}
+	                    				//Umsetzen der neuen, Mutierten DNA
 	                    					//mutieren.insert(laenge_DNA_Zeichen, schowDNA);
 	                    					aminos_Mut = umsetzer.amino(DNA_Mutiert, false);
 	                    					//System.out.println("Mut_1" + aminos_Mut[1]);
@@ -150,11 +152,11 @@ public class GUI extends BasicGame{
 	                    						break;
 	                    				}
 	                    			}
-	                    case 4 : {
+	                    case 4 : {//Speichern der aktuellen Ergebnisse
 	                    			Save.schreiben(codons_DNA.length,schowDNA , aminos, aminos_Mut.length, DNA_Mutiert, aminos_Mut);	                    	
 	                    			}
 	                }
-	            }
+	            }//Steuerrung des Cursors
 	            
 	            if(input.isKeyPressed(input.KEY_DOWN)){
 	                if(cursor_position < 4){
@@ -198,7 +200,7 @@ public class GUI extends BasicGame{
 	    		font2.drawString(100, 500, schowDNA, Color.black);
 	    	}
 	    	
-	        
+	        //Darstellung der Ursprungs DNA als Codons
 	        cursor.draw(curser_x, cursor_y);
 	        if(codons_DNA != null){
 	        	try{
@@ -232,6 +234,7 @@ public class GUI extends BasicGame{
 	        	}
 	        }
 	        //g.drawString(schowDNA, 300, 20);
+	      //Darstellung der Ursprungs DNA als Aminosäure
 	        if(aminos.length > 1){
 	            try{
 	            	font2.drawString(300, 70, aminos[aminoposition], Color.black);
@@ -249,7 +252,7 @@ public class GUI extends BasicGame{
 				}
 	        	setzerstmalum = false;
 	        }
-	        
+	      //Darstellung der Mutierten DNA als Codons
 	        if(showMutation){
 	        	//font2.drawString(300, 130, DNA_Mutiert, Color.black);
 	        	if(codons_DNA_Mut != null){
@@ -283,6 +286,7 @@ public class GUI extends BasicGame{
 		        		font2.drawString(300, 130,"",Color.black);
 		        	}
 		        }
+	        	//Darstellung der Mutierten DNA als Aminosäure
 	        	try{
 		            font2.drawString(300, 180, aminos_Mut[aminoposition], Color.black);
 	        	}catch(ArrayIndexOutOfBoundsException ex){

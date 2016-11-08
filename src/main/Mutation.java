@@ -9,7 +9,7 @@ public class Mutation {
 	
 	public void insert(int laenge, String DNA){
 		System.out.println(laenge);
-
+		//Zufällige auswahl der Stelle, an der Basen eingefügt werden.
 			int random_Stelle = ((int)(Math.random()*laenge));
 				System.out.println("Random, inti: " + random_Stelle);
 				if(random_Stelle < 4){
@@ -18,21 +18,21 @@ public class Mutation {
 			System.out.println("Random, final: " + random_Stelle);
 		
 		//int random_base = ((int)(Math.random()*4));
-		
+		//Verkürzung des DNA strings bis zu der zu Mutierenden stelle
 		try{
 			DNA_Mutiert = DNA.substring(0, random_Stelle +1);
 		}catch(StringIndexOutOfBoundsException ex){
 			DNA_Mutiert = DNA.substring(0, DNA.length());
 		}
-		
-		String mutationsParameter = JOptionPane.showInputDialog(null,"Wie viele Codons sollen eingefügt werden?",
+		//Abfrage nach der anzahl an einzufügenden Basen
+		String mutationsParameter = JOptionPane.showInputDialog(null,"Wie viele Basen sollen eingefügt werden?",
                 "P-Sem",
                 JOptionPane.PLAIN_MESSAGE);
 		
 		if(mutationsParameter == null){
 			mutationsParameter = "1";
 		}
-		
+		//Basen werden an der zu mutierenden stelle eingefügt, und der rest der DNA wieder angehangen
 		int anzahl = Integer.parseInt(mutationsParameter);
 		
 		for(int i = 0; i<=anzahl; i++){
@@ -69,7 +69,7 @@ public class Mutation {
 	}
 	
 	public void delet(int laenge, String DNA){
-		String mutationsParameter = JOptionPane.showInputDialog(null,"Wie viele Codons sollen gelöscht werden?",
+		String mutationsParameter = JOptionPane.showInputDialog(null,"Wie viele Basen sollen gelöscht werden?",
                 "P-Sem",
                 JOptionPane.PLAIN_MESSAGE);
 		

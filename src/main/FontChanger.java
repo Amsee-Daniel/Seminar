@@ -13,7 +13,7 @@ public class FontChanger {
 
 public TrueTypeFont ChangeFont(){
         
- 
+ //Erstellt ein neuen Font für die Ausgabe
 
 try {
 	InputStream inputStream	= ResourceLoader.getResourceAsStream("img/Story.ttf");

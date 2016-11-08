@@ -14,7 +14,7 @@ public class Speichern {
         String name = JOptionPane.showInputDialog(null,"Dateiname",
                 "P-Sem",
                 JOptionPane.PLAIN_MESSAGE);
-		
+		//Speichern der Ergebnisse in einer neuen Datei
         PrintWriter pWriter = null;
     try {
         pWriter = new PrintWriter(new BufferedWriter(new FileWriter("DNA_Gesichert//" + name + ".txt")));

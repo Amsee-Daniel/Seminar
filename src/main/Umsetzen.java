@@ -14,7 +14,7 @@ public class Umsetzen {
         DNA=DNA.replaceAll("T", "U");
         
         Codon = new String[laengeZeichen/3];
-        
+        //Einteilung der DNA in Codons
             for(int i=0;i<laengeZeichen/3;i++){
                 String x;
                 x=DNA.substring(0,3);
@@ -24,7 +24,7 @@ public class Umsetzen {
             }
             
             
-            
+            //Weitergabe an CodeSonne/Rückgabe an GUI
                 return sonne.sonne(Codon, mut_nonMut,laengeZeichen);
             
             //System.out.println("DNA");
